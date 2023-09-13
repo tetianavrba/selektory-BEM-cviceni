@@ -3,7 +3,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -30,6 +32,43 @@ img {
   gap: 1rem;
 }
 
+.user {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user__status {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.user__price {
+  background-color: rgb(204, 204, 204);
+  border-radius: 40px;
+  padding: 0.5rem;
+}
+
+.user__availability {
+  border-radius: 40px;
+  padding: 0.5rem;
+}
+
+.user__availability--not {
+  background-color: rgb(255, 123, 97);
+}
+
+.user__availability--free {
+  background-color: rgb(105, 228, 126);
+}
+
+
 /* Kartička uživatele */
 .karta {
   background-color: #fff;
@@ -39,7 +78,7 @@ img {
   width: 340px;
   display: flex;
   flex-direction: column;
-  align-items: center ;
+  align-items: center;
 }
 
 /* Status uživatele */
@@ -69,6 +108,13 @@ img {
   height: 100px;
 }
 
+.user__avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+}
+
 img {
   width: 100%;
   height: 100%;
@@ -76,26 +122,41 @@ img {
 }
 
 /* Uživatelský text */
-.text {
+.user__info {
   margin-bottom: 10px;
 }
 
-.nadpis {
+.user__heading {
   font-size: 1.5rem;
   margin: 0.5rem 0;
 }
 
 /* První písmeno podpisu větší */
-.popis-uživatele {
+.user__description {
   font-size: 1rem;
   margin: 0;
   line-height: 1.5;
 }
 
-/* Udělat seznam se srdíčky místo odrážek */
-.konicky {
-  padding: 0;
+.user__description::first-letter {
+  font-size: 1.2rem;
 }
+
+/* Udělat seznam se srdíčky místo odrážek */
+.user__hobby {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+.user__hobby li::before {
+  content: "♥️";
+  color: red;
+  font-size: 24px;
+  padding: 5px;
+}
+
 
 /* Navštívené odkazy jinou barvou */
 /* Po najetí na odkaz by se měl podtrhnout */
@@ -103,44 +164,65 @@ img {
 a {
   text-decoration: none;
   color: #007bff;
+  position: relative;
 }
 
-.navstiveny {
+
+a:visited {
   color: #0065d1;
 }
 
-.podtrzeni-tlacitka {
+a::after {
+  content: "";
   width: 100%;
   height: 5px;
-  background: linear-gradient(270deg, #e1466a 0%, rgba(131,217,255,1) 82%, rgba(131,206,255,1) 100%);
+  background: linear-gradient(270deg, #e1466a 0%, rgba(131, 217, 255, 1) 82%, rgba(131, 206, 255, 1) 100%);
   position: absolute;
   bottom: -4px;
   left: 0;
 }
 
+a:hover::after {
+  content: "";
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(270deg, #e1466a 0%, rgba(131, 217, 255, 1) 82%, rgba(131, 206, 255, 1) 100%);
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+
+}
+
 /* Tlačítka */
 
-.tlačitko {
+.user__button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
+
+}
+
+.user__buttons {
+  display: flex;
+
+  gap: 0.2rem;
 }
 
 /* Barvy podle platformy*/
 
-.twitter {
+.user__button--twitter {
   background-color: rgb(29, 155, 240);
   border: 3px solid rgb(29, 155, 240);
 }
 
-.facebook {
+.user__button--facebook {
   background-color: #3b5998;
   border: 3px solid #3b5998;
 }
 
-.instagram {
+.user__button--instagram {
   background-color: #E1466A;
   border: 3px solid #E1466A;
 }
@@ -148,3 +230,10 @@ a {
 /* Po najetí na tlačítko černý border */
 
 /* Při kliknutí se tlačítko zmenší o pixel */
+.user__button:active {
+  transform: scale(0.9);
+}
+
+.user__button:hover {
+  border: 3px solid black;
+}
